@@ -1,0 +1,55 @@
+[gd_scene load_steps=9 format=3 uid="uid://duj27ew76o3yj"]
+
+[ext_resource type="Script" path="res://Scenes/pacman.gd" id="1_7ekr5"]
+[ext_resource type="Texture2D" uid="uid://dn5n35q1uw6no" path="res://Assets/Pacman/Pacman_03.png" id="2_blxi2"]
+[ext_resource type="Texture2D" uid="uid://h71ud3s8c8n3" path="res://Assets/Pacman/Pacman_02.png" id="2_xccrd"]
+[ext_resource type="Texture2D" uid="uid://c6bux70f56d6a" path="res://Assets/Pacman/direction_pointer.png" id="3_3bgd6"]
+[ext_resource type="Texture2D" uid="uid://bh35fl0wqe63" path="res://Assets/Pacman/Pacman_01.png" id="4_x225f"]
+
+[sub_resource type="CircleShape2D" id="CircleShape2D_el5ha"]
+radius = 6.0
+
+[sub_resource type="Animation" id="Animation_rtl3o"]
+resource_name = "default"
+length = 0.45
+loop_mode = 1
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("Sprite2D:texture")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0, 0.15, 0.3),
+"transitions": PackedFloat32Array(1, 1, 1),
+"update": 1,
+"values": [ExtResource("4_x225f"), ExtResource("2_xccrd"), ExtResource("2_blxi2")]
+}
+
+[sub_resource type="AnimationLibrary" id="AnimationLibrary_qsqpw"]
+_data = {
+"default": SubResource("Animation_rtl3o")
+}
+
+[node name="Player" type="CharacterBody2D"]
+collision_mask = 4
+script = ExtResource("1_7ekr5")
+
+[node name="Sprite2D" type="Sprite2D" parent="."]
+texture_filter = 1
+scale = Vector2(-1, 1)
+texture = ExtResource("4_x225f")
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="."]
+shape = SubResource("CircleShape2D_el5ha")
+
+[node name="DirectionPointer" type="Sprite2D" parent="."]
+texture_filter = 1
+position = Vector2(-10, 2.08165e-12)
+scale = Vector2(0.2, 0.2)
+texture = ExtResource("3_3bgd6")
+
+[node name="AnimationPlayer" type="AnimationPlayer" parent="."]
+libraries = {
+"": SubResource("AnimationLibrary_qsqpw")
+}

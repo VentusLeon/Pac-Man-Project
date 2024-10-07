@@ -1,0 +1,18 @@
+[gd_scene load_steps=4 format=3 uid="uid://dy6xmvmwdbl74"]
+
+[ext_resource type="Script" path="res://Scenes/pellet.gd" id="1_h8kep"]
+[ext_resource type="Texture2D" uid="uid://b8j4ua603t5i5" path="res://Assets/Pellet/Pellet_Medium.png" id="1_rhq6j"]
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_kav8m"]
+size = Vector2(12, 12)
+
+[node name="Pellet" type="Area2D"]
+collision_layer = 4
+script = ExtResource("1_h8kep")
+
+[node name="Sprite2D" type="Sprite2D" parent="."]
+texture_filter = 1
+texture = ExtResource("1_rhq6j")
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="."]
+shape = SubResource("RectangleShape2D_kav8m")
